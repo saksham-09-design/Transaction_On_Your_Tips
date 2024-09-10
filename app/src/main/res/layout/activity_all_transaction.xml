@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordinator"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="350dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/close" />
+
+    <TextView
+        android:id="@+id/recyclerview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Transactions"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:layout_below="@id/dashboard"
+        android:layout_marginStart="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview1"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_below="@id/recyclerview_title"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:id="@+id/pastMonth"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="490dp"
+        android:text="Past Month"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:backgroundTint="@color/green"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sixMonths"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/green"
+        android:text="Past 6 Months"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:id="@+id/oneYear"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="555dp"
+        android:text="Past 1 Year"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:backgroundTint="@color/green"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/allTrans"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="215dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="555dp"
+        android:backgroundTint="@color/green"
+        android:text="All"
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="620dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical">
+        <LinearLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/MinSp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimum Spend"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/MinSpAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹100"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/red"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/MaxSp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maximum Spend"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/MaxSpAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹100000"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/red"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/AvgSp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average Spend"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/AvgSpAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹500"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/red"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/MinIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minimum Income"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/MinInAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹100"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/green"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/MaxIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maximum Income"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/MaxInAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹100000"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/green"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/AvgIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Average Income"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/AvgInAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹500"
+                android:textSize="18sp"
+                android:layout_marginEnd="15dp"
+                android:textColor="@color/green"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
