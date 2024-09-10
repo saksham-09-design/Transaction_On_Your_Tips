@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchTransactions() {
         GlobalScope.launch {
-            dataBase.transactionDO().insertData(Transactions(0,"Tea",-60.0,"Evening Tea","2024-09-10"))
             transactions = dataBase.transactionDO().selectData()
 
             runOnUiThread {
@@ -94,7 +93,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
-
 }
