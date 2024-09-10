@@ -9,7 +9,7 @@ import kotlin.math.abs
 
 class AllTransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAllTransactionBinding
-    private lateinit var transactions: ArrayList<Transactions>
+    private lateinit var transactions: List<Transactions>
     private lateinit var transactionsAdapter: TransactionsAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
 
@@ -18,12 +18,7 @@ class AllTransactionActivity : AppCompatActivity() {
         binding = ActivityAllTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        transactions = arrayListOf(
-            Transactions("Tea",-60.05,"Evening Tea","09/10/2024"),
-            Transactions("Coffee",-150.00,"Evening Coffee","09/10/2024"),
-            Transactions("Salary",100000.00,"This Month Salary","09/10/2024"),
-            Transactions("Lunch",-600.05,"Lunch","09/10/2024")
-        )
+        transactions = arrayListOf()
         transactionsAdapter = TransactionsAdapter(transactions, this)
         linearLayoutManager = LinearLayoutManager(this)
 

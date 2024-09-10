@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class TransactionsAdapter(private var transaction: ArrayList<Transactions>, context: Context):
+class TransactionsAdapter(private var transaction: List<Transactions>, context: Context):
 RecyclerView.Adapter<TransactionsAdapter.TransHolder>() {
     private var colorToApply: Int = ContextCompat.getColor(context, R.color.black)
 
@@ -36,6 +36,11 @@ RecyclerView.Adapter<TransactionsAdapter.TransHolder>() {
 
         holder.desc.text = transact.t_name
         holder.desc.setTextColor(colorToApply)
+    }
+
+    fun setData(transactions: List<Transactions>) {
+        this.transaction = transactions
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

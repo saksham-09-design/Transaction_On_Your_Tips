@@ -4,25 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.transactiononyourtips.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var TransactionsAdapt: TransactionsAdapter
-    private lateinit var transactions: ArrayList<Transactions>
+    private lateinit var transactions: List<Transactions>
     private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var dataBase: AppDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        transactions = arrayListOf(
-            Transactions("Tea",-60.05,"Evening Tea","09/10/2024"),
-            Transactions("Coffee",-150.00,"Evening Coffee","09/10/2024"),
-            Transactions("Salary",100000.00,"This Month Salary","09/10/2024"),
-            Transactions("Lunch",-600.05,"Lunch","09/10/2024")
-        )
+        transactions = arrayListOf()
+        dataBase = Room.databaseBuilder(this, AppDatabase::class.java, "transaction_table").build()
 
         TransactionsAdapt = TransactionsAdapter(transactions, this)
         linearLayoutManager = LinearLayoutManager(this)
@@ -33,7 +34,23 @@ class MainActivity : AppCompatActivity() {
         }
         addTransaction()
         allTransactions()
-        updateDashboard()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchTransactions()
+    }
+
+    private fun fetchTransactions() {
+        GlobalScope.launch {
+            dataBase.transactionDO().insertData(Transactions(0,"Tea",-60.0,"Evening Tea","2024-09-10"))
+            transactions = dataBase.transactionDO().selectData()
+
+            runOnUiThread {
+                updateDashboard()
+                TransactionsAdapt.setData(transactions)
+            }
+        }
     }
 
     private fun updateDashboard() {
