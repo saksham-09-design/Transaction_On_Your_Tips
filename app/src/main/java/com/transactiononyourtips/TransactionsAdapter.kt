@@ -1,6 +1,7 @@
 package com.transactiononyourtips
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,12 @@ RecyclerView.Adapter<TransactionsAdapter.TransHolder>() {
 
         holder.desc.text = transact.t_name
         holder.desc.setTextColor(colorToApply)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailedActivity::class.java)
+            intent.putExtra("transaction",transact)
+            context.startActivity(intent)
+        }
     }
 
     fun setData(transactions: List<Transactions>) {
