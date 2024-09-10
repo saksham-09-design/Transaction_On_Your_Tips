@@ -1,5 +1,6 @@
 package com.transactiononyourtips
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,5 +30,14 @@ class MainActivity : AppCompatActivity() {
             adapter = TransactionsAdapt
             layoutManager = linearLayoutManager
         }
+        addTransaction()
     }
+    private fun addTransaction() {
+        val but = binding.addBtn
+        but.setOnClickListener {
+            val intent = Intent(this, TransactionActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }
