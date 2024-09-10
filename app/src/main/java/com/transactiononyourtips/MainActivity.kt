@@ -3,7 +3,9 @@ package com.transactiononyourtips
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.transactiononyourtips.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var transactions: List<Transactions>
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var dataBase: AppDatabase
+    private lateinit var oldTransactions : List<Transactions>
+    private lateinit var deletedTransaction: Transactions
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,8 +36,39 @@ class MainActivity : AppCompatActivity() {
             adapter = TransactionsAdapt
             layoutManager = linearLayoutManager
         }
+
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                deleteTransaction(transactions[viewHolder.adapterPosition])
+            }
+        }
+        val swipeHelper = ItemTouchHelper(itemTouchHelper)
+        swipeHelper.attachToRecyclerView(binding.recyclerview)
+
         addTransaction()
         allTransactions()
+    }
+
+    private fun deleteTransaction(transaction: Transactions){
+        deletedTransaction = transaction
+        oldTransactions = transactions
+
+        GlobalScope.launch {
+            dataBase.transactionDO().deleteData(transaction)
+
+            transactions = transactions.filter { it.id != transaction.id }
+            runOnUiThread {
+                updateDashboard()
+                TransactionsAdapt.setData(transactions)
+            }
+        }
     }
 
     override fun onResume() {
