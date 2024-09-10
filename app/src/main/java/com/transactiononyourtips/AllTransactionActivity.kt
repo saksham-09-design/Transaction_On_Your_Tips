@@ -3,10 +3,12 @@ package com.transactiononyourtips
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import com.google.android.material.snackbar.Snackbar
 import com.transactiononyourtips.databinding.ActivityAllTransactionBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -62,6 +64,30 @@ class AllTransactionActivity : AppCompatActivity() {
         pastSixMonth()
     }
 
+    private fun undoDelete(){
+        GlobalScope.launch {
+            dataBase.transactionDO().insertData(deletedTransaction)
+            transactions = oldTransactions
+
+            runOnUiThread {
+                transactionsAdapter.setData(transactions)
+                updateDashboard()
+            }
+        }
+    }
+
+    private fun showSnackbar(){
+        val view = binding.coordinator
+        val snackbar = Snackbar.make(view, "Transaction Deleted!", Snackbar.LENGTH_LONG)
+        snackbar.setAction("Undo"){
+            undoDelete()
+        }
+            .setActionTextColor(ContextCompat.getColor(this, R.color.green))
+            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .setBackgroundTint(ContextCompat.getColor(this, R.color.black))
+            .show()
+    }
+
     private fun deleteTransaction(transaction: Transactions){
         deletedTransaction = transaction
         oldTransactions = transactions
@@ -73,6 +99,7 @@ class AllTransactionActivity : AppCompatActivity() {
             runOnUiThread {
                 updateDashboard()
                 transactionsAdapter.setData(transactions)
+                showSnackbar()
             }
         }
     }
