@@ -45,6 +45,11 @@ RecyclerView.Adapter<TransactionsAdapter.TransHolder>() {
         }
     }
 
+    fun changeColorForAllItems(color: Int) {
+        colorToApply = color
+        notifyDataSetChanged()
+    }
+
     fun setData(transactions: List<Transactions>) {
         this.transaction = transactions
         notifyDataSetChanged()

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var transactions: List<Transactions>
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var dataBase: AppDatabase
+    private lateinit var adapter: TransactionsAdapter
     private lateinit var oldTransactions : List<Transactions>
     private lateinit var deletedTransaction: Transactions
 
@@ -55,7 +56,118 @@ class MainActivity : AppCompatActivity() {
         swipeHelper.attachToRecyclerView(binding.recyclerview)
 
         addTransaction()
+        sharedPrefOut()
+        darkMode()
         allTransactions()
+    }
+
+    private fun sharedPrefInp(mode1: Int){
+        val sharedPreference = getSharedPreferences("Mode", MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putInt("Modedark",mode1)
+        editor.apply()
+    }
+
+    private fun sharedPrefOut(): Int{
+        val sharedPreference = getSharedPreferences("Mode", MODE_PRIVATE)
+        val mod = sharedPreference.getInt("Modedark",0)
+        return mod
+    }
+
+    private fun darkMode() {
+        val db = binding.darkMode
+        adapter = TransactionsAdapter(transactions, this)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
+        val a = sharedPrefOut()
+        if (a == 0) {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.dgrey))
+            binding.dashboard.setBackgroundColor(getResources().getColor(R.color.dgrey_b))
+            binding.abal.setTextColor(getResources().getColor(R.color.white))
+            binding.income1.setTextColor(getResources().getColor(R.color.white))
+            binding.exp1.setTextColor(getResources().getColor(R.color.white))
+            binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.white))
+            binding.recyclerview.setBackgroundColor(getResources().getColor(R.color.dgrey))
+            binding.MinIn.setTextColor(getResources().getColor(R.color.white))
+            binding.MinSp.setTextColor(getResources().getColor(R.color.white))
+            binding.MaxIn.setTextColor(getResources().getColor(R.color.white))
+            binding.MaxSp.setTextColor(getResources().getColor(R.color.white))
+            binding.AvgIn.setTextColor(getResources().getColor(R.color.white))
+            binding.AvgSp.setTextColor(getResources().getColor(R.color.white))
+
+
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = adapter
+            val newColor = ContextCompat.getColor(this, R.color.white)
+            adapter.changeColorForAllItems(newColor)
+            sharedPrefInp(0)
+        } else {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.white))
+            binding.dashboard.setBackgroundColor(getResources().getColor(R.color.white))
+            binding.abal.setTextColor(getResources().getColor(R.color.black))
+            binding.income1.setTextColor(getResources().getColor(R.color.black))
+            binding.exp1.setTextColor(getResources().getColor(R.color.black))
+            binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.black))
+            binding.recyclerview.setBackgroundColor(getResources().getColor(R.color.white))
+            binding.MinIn.setTextColor(getResources().getColor(R.color.black))
+            binding.MinSp.setTextColor(getResources().getColor(R.color.black))
+            binding.MaxIn.setTextColor(getResources().getColor(R.color.black))
+            binding.MaxSp.setTextColor(getResources().getColor(R.color.black))
+            binding.AvgIn.setTextColor(getResources().getColor(R.color.black))
+            binding.AvgSp.setTextColor(getResources().getColor(R.color.black))
+
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = adapter
+            val newColor = ContextCompat.getColor(this, R.color.black)
+            adapter.changeColorForAllItems(newColor)
+            sharedPrefInp(1)
+        }
+
+        db.setOnClickListener {
+
+            val a1 = sharedPrefOut()
+            if (a1 == 1) {
+                binding.root.setBackgroundColor(getResources().getColor(R.color.dgrey))
+                binding.dashboard.setBackgroundColor(getResources().getColor(R.color.dgrey_b))
+                binding.abal.setTextColor(getResources().getColor(R.color.white))
+                binding.income1.setTextColor(getResources().getColor(R.color.white))
+                binding.exp1.setTextColor(getResources().getColor(R.color.white))
+                binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.white))
+                binding.recyclerview.setBackgroundColor(getResources().getColor(R.color.dgrey))
+                binding.MinIn.setTextColor(getResources().getColor(R.color.white))
+                binding.MinSp.setTextColor(getResources().getColor(R.color.white))
+                binding.MaxIn.setTextColor(getResources().getColor(R.color.white))
+                binding.MaxSp.setTextColor(getResources().getColor(R.color.white))
+                binding.AvgIn.setTextColor(getResources().getColor(R.color.white))
+                binding.AvgSp.setTextColor(getResources().getColor(R.color.white))
+
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = adapter
+                val newColor1 = ContextCompat.getColor(this, R.color.white)
+                adapter.changeColorForAllItems(newColor1)
+
+                sharedPrefInp(0)
+            } else {
+                binding.root.setBackgroundColor(getResources().getColor(R.color.white))
+                binding.dashboard.setBackgroundColor(getResources().getColor(R.color.white))
+                binding.abal.setTextColor(getResources().getColor(R.color.black))
+                binding.income1.setTextColor(getResources().getColor(R.color.black))
+                binding.exp1.setTextColor(getResources().getColor(R.color.black))
+                binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.black))
+                binding.recyclerview.setBackgroundColor(getResources().getColor(R.color.white))
+                binding.MinIn.setTextColor(getResources().getColor(R.color.black))
+                binding.MinSp.setTextColor(getResources().getColor(R.color.black))
+                binding.MaxIn.setTextColor(getResources().getColor(R.color.black))
+                binding.MaxSp.setTextColor(getResources().getColor(R.color.black))
+                binding.AvgIn.setTextColor(getResources().getColor(R.color.black))
+                binding.AvgSp.setTextColor(getResources().getColor(R.color.black))
+
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = adapter
+                val newColor1 = ContextCompat.getColor(this, R.color.black)
+                adapter.changeColorForAllItems(newColor1)
+                sharedPrefInp(1)
+            }
+        }
     }
 
     private fun undoDelete(){
