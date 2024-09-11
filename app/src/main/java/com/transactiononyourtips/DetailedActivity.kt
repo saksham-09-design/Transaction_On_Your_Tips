@@ -35,6 +35,38 @@ class DetailedActivity : AppCompatActivity() {
         close()
         date_inp()
         updateTransaction()
+        darkMode()
+    }
+
+    private fun darkMode() {
+        val sharedPrefrences = getSharedPreferences("Mode", MODE_PRIVATE)
+        val a = sharedPrefrences.getInt("Modedark",1)
+
+        if(a == 0) {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.dgrey_b))
+            binding.atransact.setTextColor(getResources().getColor(R.color.white))
+            binding.closeBtn.setImageResource(R.drawable.close_w)
+            binding.titleInput.setTextColor(getResources().getColor(R.color.black))
+            binding.descriptionInput.setTextColor(getResources().getColor(R.color.black))
+            binding.amountInput.setTextColor(getResources().getColor(R.color.black))
+            binding.Date.setTextColor(getResources().getColor(R.color.black))
+            binding.head1.setTextColor(getResources().getColor(R.color.white))
+            binding.head2.setTextColor(getResources().getColor(R.color.white))
+            binding.head3.setTextColor(getResources().getColor(R.color.white))
+            binding.head4.setTextColor(getResources().getColor(R.color.white))
+        } else {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.white))
+            binding.atransact.setTextColor(getResources().getColor(R.color.black))
+            binding.closeBtn.setImageResource(R.drawable.close)
+            binding.titleInput.setTextColor(getResources().getColor(R.color.black))
+            binding.descriptionInput.setTextColor(getResources().getColor(R.color.black))
+            binding.amountInput.setTextColor(getResources().getColor(R.color.black))
+            binding.Date.setTextColor(getResources().getColor(R.color.black))
+            binding.head1.setTextColor(getResources().getColor(R.color.black))
+            binding.head2.setTextColor(getResources().getColor(R.color.black))
+            binding.head3.setTextColor(getResources().getColor(R.color.black))
+            binding.head4.setTextColor(getResources().getColor(R.color.black))
+        }
     }
 
     private fun updateTrans(transaction: Transactions) {

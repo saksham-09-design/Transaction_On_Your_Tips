@@ -62,6 +62,38 @@ class AllTransactionActivity : AppCompatActivity() {
         pastMonth()
         pastYear()
         pastSixMonth()
+        darkMode()
+    }
+
+    private fun darkMode() {
+        val sharedPrefrences = getSharedPreferences("Mode", MODE_PRIVATE)
+        val a = sharedPrefrences.getInt("Modedark", 1)
+
+        if (a == 0) {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.dgrey_b))
+            binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.white))
+            binding.MinIn.setTextColor(getResources().getColor(R.color.white))
+            binding.MinSp.setTextColor(getResources().getColor(R.color.white))
+            binding.MaxIn.setTextColor(getResources().getColor(R.color.white))
+            binding.closeBtn.setImageResource(R.drawable.close_w)
+            binding.MaxSp.setTextColor(getResources().getColor(R.color.white))
+            binding.AvgIn.setTextColor(getResources().getColor(R.color.white))
+            binding.AvgSp.setTextColor(getResources().getColor(R.color.white))
+            val newColor = ContextCompat.getColor(this, R.color.white)
+            transactionsAdapter.changeColorForAllItems(newColor)
+        } else {
+            binding.root.setBackgroundColor(getResources().getColor(R.color.white))
+            binding.recyclerviewTitle.setTextColor(getResources().getColor(R.color.black))
+            binding.MinIn.setTextColor(getResources().getColor(R.color.black))
+            binding.MinSp.setTextColor(getResources().getColor(R.color.black))
+            binding.MaxIn.setTextColor(getResources().getColor(R.color.black))
+            binding.closeBtn.setImageResource(R.drawable.close)
+            binding.MaxSp.setTextColor(getResources().getColor(R.color.black))
+            binding.AvgIn.setTextColor(getResources().getColor(R.color.black))
+            binding.AvgSp.setTextColor(getResources().getColor(R.color.black))
+            val newColor = ContextCompat.getColor(this, R.color.black)
+            transactionsAdapter.changeColorForAllItems(newColor)
+        }
     }
 
     private fun undoDelete(){
