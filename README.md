@@ -27,6 +27,22 @@
 - Easily switch between the two modes in the app's settings.
 
 
+## 📜 License
+All Rights Reserved
+
+**Copyright (c) 2025 Saksham**
+
+This software and its source code are proprietary and confidential. 
+No part of this software may be copied, distributed, modified, published, or used, 
+in whole or in part, without the prior written permission of the author.
+
+Unauthorized use of this software is strictly prohibited and may result in legal action.
+
+⚠️ **Important Notes**
+👉 This is proprietary software. Do not use or distribute without permission.
+👉 No one can legally use, copy, modify, or share your code without your prior written consent.
+👉 I own all rights, and only I can grant or deny permission on a case-by-case basis.
+
 Usage
 1. Open the app and create a new transaction by clicking on the "Add Transaction" button.
 2. Enter the amount, date, and description of the transaction.
